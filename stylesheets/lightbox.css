@@ -1,0 +1,20 @@
+.lightbox-overlay {
+  z-index: 1000;
+  opacity: 0.7;
+  background-color: #000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.lightbox-controls {
+  z-index: 1001;
+  width: 60%;
+  height: 50%;
+  left: 20%;
+  top: 25%;
+  position: absolute;
+  background-color: #fff;
+}
