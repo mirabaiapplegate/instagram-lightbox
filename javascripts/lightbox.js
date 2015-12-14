@@ -14,7 +14,7 @@ function lightbox(images) {
   var rightArrow             = createElement("a", "", lightboxControlsRight);
   var lightboxImageCaption   = createElement("div", "lightbox-caption", lightboxImageContainer);
 
-  // Binding events
+  // Binding events to left arrow
   leftArrow.href      = "#";
   leftArrow.innerText = "<";
   leftArrow.addEventListener('click', function(evt) {
@@ -24,7 +24,8 @@ function lightbox(images) {
       updateLightboxImage(imageIndex, images, lightboxImage, lightboxImageCaption);
     }
   });
-
+  
+  // Binding events to left arrow
   rightArrow.href      = "#";
   rightArrow.innerText = ">";
   rightArrow.addEventListener('click', function(evt) {
@@ -33,6 +34,11 @@ function lightbox(images) {
       imageIndex += 1;
       updateLightboxImage(imageIndex, images, lightboxImage, lightboxImageCaption);
     }
+  });
+
+  // Bind event to overlay
+  overlay.addEventListener('click', function(evt) {
+    removeLightbox(lightboxContainer);
   });
 
   // Setup initial image
@@ -51,4 +57,9 @@ function createElement(type, className, container) {
 function updateLightboxImage (imageIndex, images, lightboxImage, lightboxImageCaption) {
   lightboxImage.src = images[imageIndex].url;
   lightboxImageCaption.innerText = images[imageIndex].caption;
+}
+
+// Remove entire lightbox from DOM tree
+function removeLightbox(container) {
+  container.remove();
 }
