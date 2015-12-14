@@ -11,13 +11,10 @@ function fetchFromInsta (user_id, accessToken, callbackName) {
 
 // Authorize Instagram
 function instaAuth() {
-  // Fetch the access token from the url
-  var accessToken = window.location.hash.substring(1);
-
-  // Check if access token exists if not send user to retrieve new token
-  if (accessToken.match(/access_token=/)) {
-    accessToken = accessToken.replace('access_token=', '');
-  } else {
+  // Retrieve access token
+  var accessToken = checkForAccessToken();
+  // If accessToken is null, redirect user to obtain a token
+  if (accessToken == null) {
     var clientId      = "a635cf38f2404dd4ac295c3b2ca53164";
     var redirect_uri  = document.URL;
     var redirect_uri  = redirect_uri.replace(/\/$/, "");
@@ -26,6 +23,21 @@ function instaAuth() {
                         "&response_type=token";
 
     document.location = url;
+  }
+
+  return accessToken;
+}
+
+// Check for access token
+function checkForAccessToken() {
+  // Fetch the access token from the url
+  var accessToken = window.location.hash.substring(1);
+
+  // Check if access token exists if not set to null
+  if (accessToken.match(/access_token=/)) {
+    accessToken = accessToken.replace('access_token=', '');
+  } else {
+    accessToken = null;
   }
 
   return accessToken;
