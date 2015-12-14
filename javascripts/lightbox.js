@@ -4,7 +4,7 @@ function lightbox(images) {
   var imageIndex = 0;
   // Creating nodes
   var lightboxContainer      = createElement("div", "lightbox", document.body);
-  var overlay                = createElement("div", "lightbox-overlay", lightboxContainer);
+  var overlay                = createElement("a", "lightbox-overlay", lightboxContainer);
   var lightboxControls       = createElement("div", "lightbox-controls", lightboxContainer);
   var lightboxControlsLeft   = createElement("div", "lightbox-controls-left", lightboxControls);
   var leftArrow              = createElement("a", "", lightboxControlsLeft);
@@ -24,7 +24,7 @@ function lightbox(images) {
       updateLightboxImage(imageIndex, images, lightboxImage, lightboxImageCaption);
     }
   });
-  
+
   // Binding events to left arrow
   rightArrow.href      = "#";
   rightArrow.innerText = ">";
