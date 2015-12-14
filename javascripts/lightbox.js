@@ -15,8 +15,9 @@ function lightbox(images) {
   var lightboxImageCaption   = createElement("div", "lightbox-caption", lightboxImageContainer);
 
   // Binding events to left arrow
-  leftArrow.href      = "#";
-  leftArrow.innerText = "<";
+  leftArrow.href        = "#";
+  leftArrow.innerText   = "<";
+  leftArrow.textContent = "<"; // Firefox support
   leftArrow.addEventListener('click', function(evt) {
     evt.preventDefault();
     if (imageIndex > 0) {
@@ -26,8 +27,9 @@ function lightbox(images) {
   });
 
   // Binding events to left arrow
-  rightArrow.href      = "#";
-  rightArrow.innerText = ">";
+  rightArrow.href        = "#";
+  rightArrow.innerText   = ">";
+  rightArrow.textContent = ">"; // Firefox support
   rightArrow.addEventListener('click', function(evt) {
     evt.preventDefault();
     if (imageIndex < (images.length - 1)) {
@@ -55,8 +57,9 @@ function createElement(type, className, container) {
 
 // Update the current image in lightbox
 function updateLightboxImage (imageIndex, images, lightboxImage, lightboxImageCaption) {
-  lightboxImage.src = images[imageIndex].url;
-  lightboxImageCaption.innerText = images[imageIndex].caption;
+  lightboxImage.src                = images[imageIndex].url;
+  lightboxImageCaption.innerText   = images[imageIndex].caption;
+  lightboxImageCaption.textContent = images[imageIndex].caption; // Firefox support
 }
 
 // Remove entire lightbox from DOM tree
