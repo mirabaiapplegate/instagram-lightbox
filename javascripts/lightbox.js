@@ -1,37 +1,54 @@
+// Draw the lightbox and bind events
+function lightbox(images) {
+  // Current image index
+  var imageIndex = 0;
+  // Creating nodes
+  var lightboxContainer      = createElement("div", "lightbox", document.body);
+  var overlay                = createElement("div", "lightbox-overlay", lightboxContainer);
+  var lightboxControls       = createElement("div", "lightbox-controls", lightboxContainer);
+  var lightboxControlsLeft   = createElement("div", "lightbox-controls-left", lightboxControls);
+  var leftArrow              = createElement("a", "", lightboxControlsLeft);
+  var lightboxImageContainer = createElement("div", "lightbox-image-container", lightboxControls);
+  var lightboxImage          = createElement("img", "image", lightboxImageContainer);
+  var lightboxControlsRight  = createElement("div", "lightbox-controls-right", lightboxControls);
+  var rightArrow             = createElement("a", "", lightboxControlsRight);
+  var lightboxImageCaption   = createElement("div", "lightbox-caption", lightboxImageContainer);
 
-function drawLightbox(lightboxData) {
-
-  var lightboxContainer = document.createElement("div");
-  lightboxContainer.className = "lightbox";
-
-  var overlay = document.createElement("div");
-  overlay.className = "lightbox-overlay";
-  lightboxContainer.appendChild(overlay);
-
-  var lightboxControls = document.createElement("div");
-  lightboxControls.className = "lightbox-controls";
-  lightboxContainer.appendChild(lightboxControls);
-
-  var lightboxControlsLeft = document.createElement("div");
-  lightboxControlsLeft.className = "lightbox-controls-left";
-  lightboxControls.appendChild(lightboxControlsLeft);
-
-  var leftArrow = document.createElement("a");
+  // Binding events
+  leftArrow.href      = "#";
   leftArrow.innerText = "<";
-  lightboxControlsLeft.appendChild(leftArrow);
+  leftArrow.addEventListener('click', function(evt) {
+    evt.preventDefault();
+    if (imageIndex > 0) {
+      imageIndex -= 1;
+      updateLightboxImage(imageIndex, images, lightboxImage, lightboxImageCaption);
+    }
+  });
 
-  var lightboxControlsRight = document.createElement("div");
-  lightboxControlsRight.className = "lightbox-controls-right";
-  lightboxControls.appendChild(lightboxControlsRight);
-
-  var rightArrow = document.createElement("a");
+  rightArrow.href      = "#";
   rightArrow.innerText = ">";
-  lightboxControlsRight.appendChild(rightArrow);
+  rightArrow.addEventListener('click', function(evt) {
+    evt.preventDefault();
+    if (imageIndex < (images.length - 1)) {
+      imageIndex += 1;
+      updateLightboxImage(imageIndex, images, lightboxImage, lightboxImageCaption);
+    }
+  });
 
-  var lightboxImage = document.createElement("div");
-  lightboxImage.className = "lightbox-image";
-  lightboxControls.appendChild(lightboxImage);
+  // Setup initial image
+  updateLightboxImage(imageIndex, images, lightboxImage, lightboxImageCaption);
+}
 
-  document.body.appendChild(lightboxContainer);
+// Create new element
+function createElement(type, className, container) {
+  var el = document.createElement(type);
+  el.className = className;
+  container.appendChild(el);
+  return el;
+}
 
+// Update the current image in lightbox
+function updateLightboxImage (imageIndex, images, lightboxImage, lightboxImageCaption) {
+  lightboxImage.src = images[imageIndex].url;
+  lightboxImageCaption.innerText = images[imageIndex].caption;
 }
