@@ -1,5 +1,17 @@
+// On DOM ready check for Instagram access token
+document.addEventListener("DOMContentLoaded", function(evt) {
+  var accessToken = checkForAccessToken();
+
+  if (accessToken != null) {
+    openLightbox();
+  }
+});
+
 // Begin process to open lightbox
-function openLightbox(userID) {
+function openLightbox() {
+  var lightboxButton = document.getElementById('openLightbox');
+  var userID         = lightboxButton.getAttribute('data-instagram-user-id');
+
   // Retrieve token
   var accessToken = instaAuth();
 
