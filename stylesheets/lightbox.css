@@ -18,3 +18,45 @@
   position: absolute;
   background-color: #fff;
 }
+
+.lightbox-controls-left, .lightbox-controls-right, .lightbox-image-container {
+  float: left;
+}
+
+.lightbox-controls-left, .lightbox-controls-right {
+  display: table;
+  width: 5%;
+  height: 100%;
+  background-color: hsl(0, 0%, 57%);
+}
+
+.lightbox-controls-left a, .lightbox-controls-right a {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  font-size: 175%;
+  text-decoration: none;
+  color: #fff;
+}
+
+.lightbox-image-container {
+  background-color: black;
+  width: 90%;
+  height: 100%;
+  text-align: center;
+}
+
+.lightbox-image-container img {
+  height: 93%;
+}
+
+.lightbox-caption {
+  height: 7%;
+  color: #fff;
+}
