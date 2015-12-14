@@ -39,7 +39,9 @@ function lightbox(images) {
   });
 
   // Bind event to overlay
+  overlay.href = "#";
   overlay.addEventListener('click', function(evt) {
+    evt.preventDefault();
     removeLightbox(lightboxContainer);
   });
 
@@ -64,5 +66,5 @@ function updateLightboxImage (imageIndex, images, lightboxImage, lightboxImageCa
 
 // Remove entire lightbox from DOM tree
 function removeLightbox(container) {
-  container.remove();
+  document.body.removeChild(container);
 }
