@@ -20,7 +20,7 @@ function instaAuth() {
     var redirect_uri  = redirect_uri.replace(/\/$/, "");
     var url           = "https://api.instagram.com/oauth/authorize/?client_id="
                         + clientId + "&redirect_uri=" + redirect_uri +
-                        "&response_type=token";
+                        "&response_type=token&scope=public_content";
 
     document.location = url;
   }
